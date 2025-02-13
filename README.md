@@ -1,2 +1,2 @@
-# jd-frontend
-Test frontend 
+# jd-my-weather-app
+Show the weather for Tokyo and Nasushiobara
