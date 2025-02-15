@@ -12,3 +12,6 @@
 |UR10|**Minimal Disruptions During High Traffic**|Users expect the application to continue functioning reliably even if many people check the weather at the same time (e.g., during a major event or storm).|2025.2.15|Not Implimented|BR03|
 |UR11|**Data Accuracy and Reliability**|Users want confidence that the displayed weather information is accurate and consistently available.|2025.2.15|Not Implimented|BR01|
 |UR12|**Privacy and Security**|Users expect that any data transmissions are secured (HTTPS), and no sensitive information or credentials are exposed in the client interface.|2025.2.15|Not Implimented|BR08|
+|UR13|**Updates and Availability**|Users expect that the application updates easily with little to no disruptions of service|2025.2.15|Not Implemented|BR06|
+|UR14|**Documentation**|Users expect documentation that will explain to them how to operate the application. Users also expect some documentation to guide them if they need to make modifications.|2025.2.15|Not Implemented|BR07|
+|UR15|**Logging**|Users expect understandable logs that can inform them what, when, and possibly why an error occurred.|2025.2.15|Not Implemented|BR07|
