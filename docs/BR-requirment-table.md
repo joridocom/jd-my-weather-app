@@ -7,5 +7,5 @@
 |BR04|**Scalability Within Budget**|The solution’s infrastructure shall scale to handle moderate traffic spikes without significantly increasing operational costs.|2025.2.15|Not Implimented|
 |BR05|**Compliance and Partnership**|The system must comply with all relevant JAXA Earth API usage policies (e.g., rate limits), ensuring a sustainable partnership with data providers.|2025.2.15|Not Implimented|
 |BR06|**Future-Proof Architecture**|The application’s design and codebase shall accommodate future enhancements—such as adding more locations or extending features—without extensive refactoring.|2025.2.15|Not Implimented|
-|BR07|**Operational Insight and Continuous Improvement**|Sufficient monitoring, logging, and documentation shall be in place to enable performance tracking, quick issue resolution, and smooth onboarding of new developers.|2025.2.15|Not Implimented|
+|BR07|**Operational Insight and Continuous Improvement**|Sufficient monitoring, logging, and documentation shall be in place to enable performance tracking, quick issue resolution, and smooth onboarding of new users.|2025.2.15|Not Implimented|
 |BR08|**Cybersecurity Compliance**|Protect brand reputation and ensure compliance with security standards by guaranteeing the confidentiality and integrity of data in transit and at rest.|2025.2.15|Not Implimented|
