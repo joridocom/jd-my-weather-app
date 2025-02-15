@@ -1,0 +1,27 @@
+|Type|Cat|Code|Detailed Requirement|Dated Modified|Status|Related UR|Related BR|
+|----|---|----|--------------------|--------------|------|----------|-----------|
+|Functional Requirements|Weather Data Retrieval|FR01|The system must display current weather information (temperature, relative humidity, and current status) for Tokyo and Nasushiobara.|2025.2.15|Not Implimented|UR01|BR01|
+|Functional Requirements|Weather Data Retrieval|FR02|The system should fetch this data from the JAXA Earth API at regular intervals (at least every 60 minutes) or on-demand when the user loads or refreshes the page.|2025.2.15|Not Implimented|UR01|BR01|
+|Functional Requirements|Webpage User Interface (UI)|FR03|Provide a simple, clean webpage accessible on modern desktop and mobile browsers.|2025.2.15|Not Implimented|UR05|BR02|
+|Functional Requirements|Webpage User Interface (UI)|FR04|Show at a minimum the current temperature, relative humidity, time, and the icon for the current weather.|2025.2.15|Not Implimented|UR01|BR01|
+|Functional Requirements|Webpage User Interface (UI)|FR05|Include a clear label or timestamp indicating when the weather information was last updated.|2025.2.15|Not Implimented|UR08|BR01|
+|Functional Requirements|Webpage User Interface (UI)|FR06|Display both Tokyo and Nasushiobara on the same screen.|2025.2.15|Not Implimented|UR02|BR02|
+|Functional Requirements|Error Handling and Messaging|FR07|If the JAXA Earth API is unavailable or returns errors, display a friendly notification to the user (e.g., “Weather data currently unavailable”).|2025.2.15|Not Implimented|UR07|BR02|
+|Functional Requirements|Error Handling and Messaging|FR08|Log errors for troubleshooting.|2025.2.15|Not Implimented|UR07|BR02|
+|Functional Requirements|Data Refresh / Caching|FR09|The app should cache weather data for a short period (the past 2 hours) to reduce excessive API calls and page load times.|2025.2.15|Not Implimented|UR11|BR01|
+|Functional Requirements|Data Refresh / Caching|FR10|Users can manually refresh if needed.|2025.2.15|Not Implimented|UR03|BR01|
+|Non-Functional Requirements|Performance|NFR01|The webpage should load within 2–3 seconds on average broadband connections.|2025.2.15|Not Implimented|UR06|BR03|
+|Non-Functional Requirements|Performance|NFR02|API calls should be optimized to avoid delays.|2025.2.15|Not Implimented|UR06|BR03|
+|Non-Functional Requirements|Performance|NFR03|Minimal resource usage to remain cost-efficient.|2025.2.15|Not Implimented|UR06|BR04|
+|Non-Functional Requirements|Reliability & Availability|NFR04|The app should be available 24/7 with minimal downtime.|2025.2.15|Not Implimented|UR06|BR03|
+|Non-Functional Requirements|Reliability & Availability|NFR05|Use robust hosting and monitor the availability of both the app and the JAXA Earth API.|2025.2.15|Not Implimented|UR10|BR03|
+|Non-Functional Requirements|Scalability|NFR06|It should handle moderate traffic spikes (e.g. if many users check the weather at the same time).|2025.2.15|Not Implimented|UR10|BR03|
+|Non-Functional Requirements|Scalability|NFR07|Cloud-based or container-based infrastructure can be used to scale if user load increases.|2025.2.15|Not Implimented|UR10|BR04|
+|Non-Functional Requirements|Security & Data Privacy|NFR08|Secure all communications (HTTPS).|2025.2.15|Not Implimented|UR12|BR08|
+|Non-Functional Requirements|Security & Data Privacy|NFR09|Handle API keys securely (do not expose them in client-side code).|2025.2.15|Not Implimented|UR12|BR08|
+|Non-Functional Requirements|Maintainability|NFR10|Code should be structured to allow easy updates if the JAXA Earth API changes or if additional features (e.g., more locations) are added.|2025.2.15|Not Implimented|UR13|BR06|
+|Non-Functional Requirements|Maintainability|NFR11|Documentation for setup and deployment is provided so new developers can onboard quickly.|2025.2.15|Not Implimented|UR14|BR07|
+|Non-Functional Requirements|Monitoring & Logging|NFR12|Basic logs for API responses and errors.|2025.2.15|Not Implimented|UR15|BR07|
+|Non-Functional Requirements|Monitoring & Logging|NFR13|Application monitoring or analytics to track usage and detect issues (e.g., performance logs, error rates).|2025.2.15|Not Implimented|UR15|BR07|
+|Non-Functional Requirements|API Usage and Rate Limits|NFR14|Comply with JAXA Earth API usage policies (e.g., not exceeding daily rate limits).|2025.2.15|Not Implimented|UR07|BR05|
+|Non-Functional Requirements|API Usage and Rate Limits|NFR15|Implement graceful handling or fallback if rate limits are reached.|2025.2.15|Not Implimented|UR07|BR05|
