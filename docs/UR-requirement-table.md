@@ -11,4 +11,4 @@
 |UR09|**Intuitive Visual Representation**|Users want weather conditions (like sunny, cloudy, etc.) displayed with recognizable icons or visual cues, making it quick to understand at a glance.|2025.2.15|Not Implimented|BR02|
 |UR10|**Minimal Disruptions During High Traffic**|Users expect the application to continue functioning reliably even if many people check the weather at the same time (e.g., during a major event or storm).|2025.2.15|Not Implimented|BR03|
 |UR11|**Data Accuracy and Reliability**|Users want confidence that the displayed weather information is accurate and consistently available.|2025.2.15|Not Implimented|BR01|
-|UR12|**Privacy and Security**|Users expect that any data transmissions are secured (HTTPS), and no sensitive information or credentials are exposed in the client interface.|2025.2.15|Not Implimented|N/A|
+|UR12|**Privacy and Security**|Users expect that any data transmissions are secured (HTTPS), and no sensitive information or credentials are exposed in the client interface.|2025.2.15|Not Implimented|BR08|
