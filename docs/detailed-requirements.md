@@ -1,0 +1,6 @@
+|Parent Code|Code|Detailed Requirement|Date Modified|Status|Test ID|Test Case|Test Status|
+|-----------|----|--------------------|-------------|------|-------|---------|-----------|
+|FR01|FR01.1|The system must display metric units for the weather information for a location|2025.2.15|Not Implimented|TC-FR011-001|Check units|Not Implemented|
+|FR01|FR01.2|The system will display whole numbers and not decimal fractions.|2025.2.15|Not Implimented|TC-FR012-001|Whole Numbers|Not Implemented|
+|FR01|FR01.3|The system must allow the future use of other units with minimal refractoring|2025.2.15|Not Implimented|TC-FR013-001|Other units|Not Implemented|
+|FR01|FR01.4|The system must display the icons for the following states: sunny, partly sunny, cloudy, rainy, snowy|2025.2.15|Not Implimented|TC-FR014-001|State Icons|Not Implemented|
