@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Info</title>
+  <!-- Link to our custom CSS file -->
+  <link rel="stylesheet" href="css/output.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <div class="weather-container">
-    <!-- Weather card for Tokyo -->
-    <div class="weather-card">
-      <h2 class="location">Tokyo, Japan</h2>
-      <p class="timestamp">As of <span id="tokyo-time">--:-- -- JST</span></p>
-      <div class="temperature">
-        <span id="tokyo-temp">--</span>°
-      </div>
-      <p class="description" id="tokyo-desc">--</p>
-      <p class="high-low">Day <span id="tokyo-day">--</span>° • Night <span id="tokyo-night">--</span>°</p>
-      <div class="advisory" id="tokyo-advisory">No advisories</div>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <!-- Title will be set dynamically -->
+    <h1 id="app-title" class="text-3xl font-bold mb-6 text-center"></h1>
+    
+    <!-- Weather cards container -->
+    <div id="weather-container" class="flex flex-col md:flex-row gap-6">
+      <!-- Weather cards will be injected here -->
     </div>
 
-    <!-- Weather card for Nasushiobara -->
-    <div class="weather-card">
-      <h2 class="location">Nasushiobara, Japan</h2>
-      <p class="timestamp">As of <span id="nasu-time">--:-- -- JST</span></p>
-      <div class="temperature">
-        <span id="nasu-temp">--</span>°
-      </div>
-      <p class="description" id="nasu-desc">--</p>
-      <p class="high-low">Day <span id="nasu-day">--</span>° • Night <span id="nasu-night">--</span>°</p>
-      <div class="advisory" id="nasu-advisory">No advisories</div>
+    <!-- Refresh Button -->
+    <div class="flex justify-center">
+      <button id="refresh-btn" class="mt-6 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        <!-- Button text will be set dynamically -->
+      </button>
     </div>
   </div>
 
+  <!-- Link to our custom JavaScript file -->
   <script src="js/script.js"></script>
 </body>
 </html>

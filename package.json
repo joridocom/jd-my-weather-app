@@ -1,3 +1,30 @@
 {
-    "name": "package1"
+  "name": "package1",
+  "scripts": {
+    "start": "node server.js",
+    "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch"
+  },
+  "description": "Show the weather for Tokyo and Nasushiobara",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joridocom/jd-my-weather-app.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/joridocom/jd-my-weather-app/issues"
+  },
+  "homepage": "https://github.com/joridocom/jd-my-weather-app#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
 }
