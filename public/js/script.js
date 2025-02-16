@@ -14,10 +14,11 @@ const translations = {
     time: "Time",
     humidity: "Humidity",
     refresh: "Refresh Data",
-    clear: "Clear",
+    clear: "Sunny",
     cloudy: "Cloudy",
     rain: "Rain",
-    snow: "Snow"
+    snow: "Snow",
+    partlyCloudy: "Partly Cloudy"
   },
   ja: {
     title: "天気情報",
@@ -27,7 +28,8 @@ const translations = {
     clear: "晴れ",
     cloudy: "曇り",
     rain: "雨",
-    snow: "雪"
+    snow: "雪",
+    partlyCloudy: "晴れ時々曇り"
   }
 };
 
@@ -39,34 +41,40 @@ const texts = translations[userLang];
 document.getElementById("app-title").innerText = texts.title;
 document.getElementById("refresh-btn").innerText = texts.refresh;
 
-// Function to simulate fetching weather data from an API.
+// Updated fetchWeatherData() using data/locations.json
 function fetchWeatherData() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
+  // 1. Fetch the JSON file containing city information.
+  return fetch('./data/locations.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(cities => {
+      // 2. For each location in the JSON, generate random weather data.
       const now = new Date().toLocaleTimeString();
-      resolve([
-        {
-          city: 'Tokyo',
-          timestamp: now,
-          temperature: Math.floor(Math.random() * 15) + 15, // 15°C to 29°C
-          humidity: Math.floor(Math.random() * 30) + 50,    // 50% to 79%
-          weather: randomWeather()
-        },
-        {
-          city: 'Nasushiobara',
-          timestamp: now,
-          temperature: Math.floor(Math.random() * 15) + 15,
-          humidity: Math.floor(Math.random() * 30) + 50,
-          weather: randomWeather()
-        }
-      ]);
-    }, 500); // Simulated network delay.
-  });
+      return cities.map(city => ({
+        city: city.name,          // e.g., "Tokyo"
+        lat: city.lat,            // e.g., 35.6895
+        lon: city.lon,            // e.g., 139.6917
+        timestamp: now,
+        temperature: Math.floor(Math.random() * 15) + 15, // 15°C–29°C
+        humidity: Math.floor(Math.random() * 30) + 50,    // 50%–79%
+        weather: randomWeather()  // Uses your existing randomWeather() function
+      }));
+    })
+    .catch(error => {
+      // Handle errors (e.g., file not found, network issues)
+      console.error('Error fetching location data:', error);
+      // Return an empty array or some fallback so the rest of the code can handle it
+      return [];
+    });
 }
 
 // Randomly choose a weather condition (using localized strings).
 function randomWeather() {
-  const conditions = [texts.clear, texts.cloudy, texts.rain, texts.snow];
+  const conditions = [texts.clear, texts.cloudy, texts.rain, texts.snow, texts.partlyCloudy];
   return conditions[Math.floor(Math.random() * conditions.length)];
 }
 
@@ -74,24 +82,50 @@ function randomWeather() {
 function getWeatherIcon(condition) {
   let conditionKey;
   if (condition === translations.en.clear || condition === translations.ja.clear) {
-    conditionKey = 'Clear';
+    conditionKey = 'Sunny';
   } else if (condition === translations.en.cloudy || condition === translations.ja.cloudy) {
     conditionKey = 'Cloudy';
   } else if (condition === translations.en.rain || condition === translations.ja.rain) {
     conditionKey = 'Rain';
   } else if (condition === translations.en.snow || condition === translations.ja.snow) {
     conditionKey = 'Snow';
+  } else if (condition === translations.en.partlyCloudy || condition === translations.ja.partlyCloudy) {
+    conditionKey = 'PartlyCloudy'; 
   } else {
     conditionKey = '';
   }
   
   switch (conditionKey) {
-    case 'Clear':
+    case 'Sunny':
       return `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414M18.364 18.364l-1.414-1.414M6.05 6.05L4.636 7.464M12 8a4 4 0 100 8 4 4 0 000-8z" />
-        </svg>`;
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-16 w-16 text-yellow-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <g stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <!-- Vertical rays -->
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <!-- Horizontal rays -->
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+
+          <!-- Top-left diagonal (\ slope) -->
+          <path d="M5.636 5.636 l1.414 1.414" />
+          <!-- Top-right diagonal (/ slope) -->
+          <path d="M18.364 5.636 l-1.414 1.414" />
+          <!-- Bottom-left diagonal (/ slope) -->
+          <path d="M5.636 18.364 l1.414 -1.414" />
+          <!-- Bottom-right diagonal (\ slope) -->
+          <path d="M16.95 16.95 l1.414 1.414" />
+
+          <!-- Circle in the center -->
+          <circle cx="12" cy="12" r="4" />
+        </g>
+      </svg>`;
     case 'Cloudy':
       return `
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,16 +134,102 @@ function getWeatherIcon(condition) {
         </svg>`;
     case 'Rain':
       return `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M4 16v-1a4 4 0 014-4h4a4 4 0 014 4v1M8 16v4M12 16v4M16 16v4" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 text-blue-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <!-- Cloud -->
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="
+              M3 15
+              a4 4 0 0 1 4-4
+              h1
+              a5 5 0 0 1 9.9-.58
+              3 3 0 0 1 1.1 5.58
+              H4
+              z
+            "
+          />
+          
+          <!-- Angled rain slashes -->
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="
+              M8 17 l1 2
+              M12 17 l1 2
+              M16 17 l1 2
+            "
+          />
         </svg>`;
     case 'Snow':
       return `
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M8 4V2m8 2V2m-9 16h10m-9-2h10m-9-2h10M8 22v-2m8 2v-2M6 12H4m16 0h-2M6 8l-1.5-1.5m13 0L18 8M6 16l-1.5 1.5m13-1.5L18 16" />
+          <defs>
+            <!-- Define one snowflake arm: a main ray with two side branches -->
+            <g id="snowflake-arm">
+              <!-- Main ray from the center outward -->
+              <line x1="0" y1="0" x2="0" y2="-8" />
+              <!-- Left branch -->
+              <line x1="0" y1="-5" x2="-1.5" y2="-4" />
+              <!-- Right branch -->
+              <line x1="0" y1="-5" x2="1.5" y2="-4" />
+            </g>
+          </defs>
+          <g stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <!-- Place the arms around the center (12,12) by rotating each copy -->
+            <g transform="translate(12,12)">
+              <use href="#snowflake-arm" transform="rotate(0)" />
+              <use href="#snowflake-arm" transform="rotate(60)" />
+              <use href="#snowflake-arm" transform="rotate(120)" />
+              <use href="#snowflake-arm" transform="rotate(180)" />
+              <use href="#snowflake-arm" transform="rotate(240)" />
+              <use href="#snowflake-arm" transform="rotate(300)" />
+            </g>
+            <!-- Optional: a small circle at the center for added detail -->
+            <circle cx="12" cy="12" r="1" fill="currentColor" />
+          </g>
         </svg>`;
+        case 'PartlyCloudy':
+      return `
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-16 w-16 text-yellow-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <g stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <!-- Small sun on the top-left (circle + short rays) -->
+          <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+          <path d="M8 1v2" />
+          <path d="M8 13v2" />
+          <path d="M1 8h2" />
+          <path d="M13 8h2" />
+
+          <!-- Cloud overlapping the bottom-right side of the sun -->
+          <path
+            stroke="currentColor"
+            fill="none"
+            d="
+              M9 12
+              a3 3 0 0 1 3-3
+              h1
+              a4 4 0 0 1 7.92-.46
+              3 3 0 0 1 1.08 5.46
+              H9
+              z
+            "
+          />
+        </g>
+      </svg>`;
     default:
       return '';
   }
