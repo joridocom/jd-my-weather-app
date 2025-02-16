@@ -1,0 +1,25 @@
+// location-display.spec.js
+const { test, expect } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
+
+test('Location names are displayed correctly', async ({ page }) => {
+  // 1. Load the location data from location.json
+  const filePath = path.join(__dirname, '../../public/data/locations.json');
+  const locationData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+  // 2. Navigate to your weather app's page
+  await page.goto('http://localhost:8000/Projects/jd-my-weather-app/public/'); // Replace with your app's URL
+
+  // Wait for the city elements to be present on the page.
+  await page.waitForSelector('#weather-container h2.text-2xl.font-bold.mb-1');
+
+  // 3. Loop through the location data and check if each name is displayed
+  for (const location of locationData) {
+    const cityName = location.name;
+
+    // 4. Check if the city name is present on the page
+    const cityElement = await page.locator(`text=${cityName}`);
+    await expect(cityElement).toBeVisible();
+  }
+});
