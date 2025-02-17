@@ -9,6 +9,7 @@ test('Location names are displayed correctly', async ({ page }) => {
   const locationData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
   // 2. Navigate to your weather app's page
+
   await page.goto('http://localhost:8000'); // Replace with your app's URL
 
   // Wait for the city elements to be present on the page.
