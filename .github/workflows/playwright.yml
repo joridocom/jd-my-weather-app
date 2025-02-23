@@ -1,9 +1,11 @@
 name: Playwright Tests
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
-      - develop # Or the branch you merge into staging from.
-
+      - develop
 jobs:
   test:
     timeout-minutes: 60
