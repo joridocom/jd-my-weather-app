@@ -1,5 +1,5 @@
 {
-  "name": "package1",
+  "name": "jd-my-weather-app",
   "scripts": {
     "start": "node server.js",
     "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch",
@@ -10,7 +10,7 @@
     "format:check": "prettier --check ."
   },
   "description": "Show the weather for Tokyo and Nasushiobara",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "server.js",
   "directories": {
     "doc": "docs"
