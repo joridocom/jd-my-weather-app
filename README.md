@@ -1,4 +1,4 @@
-# End to End Testing of Simple Weather App
+# End-to-End Testing of Simple Weather App
 
 ![GitHub Actions Status](https://github.com/joridocom/jd-my-weather-app/actions/workflows/playwright.yml/badge.svg)
 
@@ -17,7 +17,7 @@ This is only for personal learning purposes. :)
 5. Create a workflow to create a release candidate
 6. Create a workflow to create a staging environment and run tests
 7. Create a workflow to provision the passing candidate to a "production" environment
-   [Other takss to be added when it comes to mind]
+   [Other tasks to be added when it comes to mind]
 
 ## Tech Stack
 
