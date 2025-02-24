@@ -27,6 +27,6 @@ This is only for personal learning purposes. :)
 - CI/CD - GHA where possible
 - Testing - Playwright
 - Static Code Analysis - Prettier, ESlint
-- Hosting - AWS EC2 (tent.)
+- Hosting - AWS Lightsail (tent.)
 - Provision - Terraform (tent.)
 - Other - Husky
