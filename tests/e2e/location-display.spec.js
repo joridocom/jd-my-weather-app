@@ -3,6 +3,20 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
 
+// Test metadata: linked to requirement FR06
+test.describe('Weather Display Tests', () => {
+  test('Location names are displayed correctly', async ({ page }) => {
+    test.info().annotations.push({ type: 'requirement', description: 'FR06' }); // Link to FR06
+    const filePath = path.join(__dirname, '../../public/data/locations.json');
+    const locationData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    await page.goto('http://localhost:8000');
+    await page.waitForSelector('#weather-container h2.text-2xl.font-bold.mb-1');
+    for (const location of locationData) {
+      const cityElement = await page.locator(`text=${location.name}`);
+      await expect(cityElement).toBeVisible();
+    }
+  });
+});
 test('Location names are displayed correctly', async ({ page }) => {
   // 1. Load the location data from location.json
   const filePath = path.join(__dirname, '../../public/data/locations.json');

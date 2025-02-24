@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./public:/app/public
+      - ./server.js:/app/server.js
+      - ./package*.json:/app/package*.json
+      - ./config:/app/config
+      - ./controllers:/app/controllers
+      - ./routes:/app/routes
+#    environment:
+#      WEATHER_API_KEY: ${WEATHER_API_KEY:-your_dev_api_key} # Default for dev

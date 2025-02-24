@@ -1,11 +1,16 @@
 {
-  "name": "package1",
+  "name": "jd-my-weather-app",
   "scripts": {
     "start": "node server.js",
-    "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch"
+    "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch",
+    "prepare": "husky install",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "description": "Show the weather for Tokyo and Nasushiobara",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "server.js",
   "directories": {
     "doc": "docs"
@@ -23,10 +28,19 @@
   },
   "homepage": "https://github.com/joridocom/jd-my-weather-app#readme",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "@eslint/js": "^9.21.0",
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.4",
     "autoprefixer": "^10.4.17",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "postcss": "^8.4.35",
+    "prettier": "^3.5.2",
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {

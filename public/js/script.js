@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Set the title
   document.getElementById('app-title').textContent = 'Weather Information';
-  
+
   // Set the refresh button text
   document.getElementById('refresh-btn').textContent = 'Refresh Weather';
 });
@@ -10,27 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. Define translation dictionaries for English and Japanese.
 const translations = {
   en: {
-    title: "Weather Information",
-    time: "Time",
-    humidity: "Humidity",
-    refresh: "Refresh Data",
-    clear: "Sunny",
-    cloudy: "Cloudy",
-    rain: "Rain",
-    snow: "Snow",
-    partlyCloudy: "Partly Cloudy"
+    title: 'Weather Information',
+    time: 'Time',
+    humidity: 'Humidity',
+    refresh: 'Refresh Data',
+    clear: 'Sunny',
+    cloudy: 'Cloudy',
+    rain: 'Rain',
+    snow: 'Snow',
+    partlyCloudy: 'Partly Cloudy',
   },
   ja: {
-    title: "天気情報",
-    time: "時間",
-    humidity: "湿度",
-    refresh: "データ更新",
-    clear: "晴れ",
-    cloudy: "曇り",
-    rain: "雨",
-    snow: "雪",
-    partlyCloudy: "晴れ時々曇り"
-  }
+    title: '天気情報',
+    time: '時間',
+    humidity: '湿度',
+    refresh: 'データ更新',
+    clear: '晴れ',
+    cloudy: '曇り',
+    rain: '雨',
+    snow: '雪',
+    partlyCloudy: '晴れ時々曇り',
+  },
 };
 
 // 2. Detect the user's language: if it starts with "ja", use Japanese.
@@ -38,33 +38,33 @@ const userLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
 const texts = translations[userLang];
 
 // 3. Set static text using the selected language.
-document.getElementById("app-title").innerText = texts.title;
-document.getElementById("refresh-btn").innerText = texts.refresh;
+document.getElementById('app-title').innerText = texts.title;
+document.getElementById('refresh-btn').innerText = texts.refresh;
 
 // Updated fetchWeatherData() using data/locations.json
 function fetchWeatherData() {
   // 1. Fetch the JSON file containing city information.
   return fetch('./data/locations.json')
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok: ' + response.statusText);
       }
       return response.json();
     })
-    .then(cities => {
+    .then((cities) => {
       // 2. For each location in the JSON, generate random weather data.
       const now = new Date().toLocaleTimeString();
-      return cities.map(city => ({
-        city: city.name,          // e.g., "Tokyo"
-        lat: city.lat,            // e.g., 35.6895
-        lon: city.lon,            // e.g., 139.6917
+      return cities.map((city) => ({
+        city: city.name, // e.g., "Tokyo"
+        lat: city.lat, // e.g., 35.6895
+        lon: city.lon, // e.g., 139.6917
         timestamp: now,
         temperature: Math.floor(Math.random() * 15) + 15, // 15°C–29°C
-        humidity: Math.floor(Math.random() * 30) + 50,    // 50%–79%
-        weather: randomWeather()  // Uses your existing randomWeather() function
+        humidity: Math.floor(Math.random() * 30) + 50, // 50%–79%
+        weather: randomWeather(), // Uses your existing randomWeather() function
       }));
     })
-    .catch(error => {
+    .catch((error) => {
       // Handle errors (e.g., file not found, network issues)
       console.error('Error fetching location data:', error);
       // Return an empty array or some fallback so the rest of the code can handle it
@@ -74,27 +74,48 @@ function fetchWeatherData() {
 
 // Randomly choose a weather condition (using localized strings).
 function randomWeather() {
-  const conditions = [texts.clear, texts.cloudy, texts.rain, texts.snow, texts.partlyCloudy];
+  const conditions = [
+    texts.clear,
+    texts.cloudy,
+    texts.rain,
+    texts.snow,
+    texts.partlyCloudy,
+  ];
   return conditions[Math.floor(Math.random() * conditions.length)];
 }
 
 // Returns an inline SVG icon based on the (English) weather condition.
 function getWeatherIcon(condition) {
   let conditionKey;
-  if (condition === translations.en.clear || condition === translations.ja.clear) {
+  if (
+    condition === translations.en.clear ||
+    condition === translations.ja.clear
+  ) {
     conditionKey = 'Sunny';
-  } else if (condition === translations.en.cloudy || condition === translations.ja.cloudy) {
+  } else if (
+    condition === translations.en.cloudy ||
+    condition === translations.ja.cloudy
+  ) {
     conditionKey = 'Cloudy';
-  } else if (condition === translations.en.rain || condition === translations.ja.rain) {
+  } else if (
+    condition === translations.en.rain ||
+    condition === translations.ja.rain
+  ) {
     conditionKey = 'Rain';
-  } else if (condition === translations.en.snow || condition === translations.ja.snow) {
+  } else if (
+    condition === translations.en.snow ||
+    condition === translations.ja.snow
+  ) {
     conditionKey = 'Snow';
-  } else if (condition === translations.en.partlyCloudy || condition === translations.ja.partlyCloudy) {
-    conditionKey = 'PartlyCloudy'; 
+  } else if (
+    condition === translations.en.partlyCloudy ||
+    condition === translations.ja.partlyCloudy
+  ) {
+    conditionKey = 'PartlyCloudy';
   } else {
     conditionKey = '';
   }
-  
+
   switch (conditionKey) {
     case 'Sunny':
       return `
@@ -113,13 +134,13 @@ function getWeatherIcon(condition) {
           <path d="M2 12h2" />
           <path d="M20 12h2" />
 
-          <!-- Top-left diagonal (\ slope) -->
+          <!-- Top-left diagonal (backslash slope) -->
           <path d="M5.636 5.636 l1.414 1.414" />
           <!-- Top-right diagonal (/ slope) -->
           <path d="M18.364 5.636 l-1.414 1.414" />
           <!-- Bottom-left diagonal (/ slope) -->
           <path d="M5.636 18.364 l1.414 -1.414" />
-          <!-- Bottom-right diagonal (\ slope) -->
+          <!-- Bottom-right diagonal (backslash slope) -->
           <path d="M16.95 16.95 l1.414 1.414" />
 
           <!-- Circle in the center -->
@@ -197,7 +218,7 @@ function getWeatherIcon(condition) {
             <circle cx="12" cy="12" r="1" fill="currentColor" />
           </g>
         </svg>`;
-        case 'PartlyCloudy':
+    case 'PartlyCloudy':
       return `
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -240,9 +261,10 @@ function renderWeather(data) {
   const container = document.getElementById('weather-container');
   container.innerHTML = ''; // Clear existing data
 
-  data.forEach(cityData => {
+  data.forEach((cityData) => {
     const card = document.createElement('div');
-    card.className = 'bg-white shadow-lg rounded-lg p-6 flex flex-col items-center flex-1';
+    card.className =
+      'bg-white shadow-lg rounded-lg p-6 flex flex-col items-center flex-1';
 
     card.innerHTML = `
       <h2 class="text-2xl font-bold mb-1">${cityData.city}</h2>
