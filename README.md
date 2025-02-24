@@ -15,7 +15,7 @@ This is only for personal learning purposes. :)
 3. Write a test and have it executed locally and GHA -> one is done
 4. Write a script to create a report to link the test to the requirements --> done need work on making it easier
 5. Create a workflow to create a release candidate
-6. Create a workflow to create a staging environment and run tests
+6. Create a workflow to create a staging environment and run E2E tests
 7. Create a workflow to provision the passing candidate to a "production" environment
    [Other tasks to be added when it comes to mind]
 
