@@ -17,6 +17,7 @@ This is only for personal learning purposes. :)
 5. Create a workflow to create a release candidate
 6. Create a workflow to create a staging environment and run E2E tests
 7. Create a workflow to provision the passing candidate to a "production" environment
+8. Write other tests and check the traceability report for each major feature.
    [Other tasks to be added when it comes to mind]
 
 ## Tech Stack
